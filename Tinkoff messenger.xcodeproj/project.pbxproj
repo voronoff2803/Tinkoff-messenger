@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F3C23F97986004FA19F /* AppDelegate.swift */; };
-		0DE94F3F23F97986004FA19F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F3E23F97986004FA19F /* SceneDelegate.swift */; };
 		0DE94F4123F97986004FA19F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F4023F97986004FA19F /* ViewController.swift */; };
 		0DE94F4423F97986004FA19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4223F97986004FA19F /* Main.storyboard */; };
 		0DE94F4623F9798A004FA19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4523F9798A004FA19F /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		0DE94F3923F97986004FA19F /* Tinkoff messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE94F3C23F97986004FA19F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0DE94F3E23F97986004FA19F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0DE94F4023F97986004FA19F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0DE94F4323F97986004FA19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0DE94F4523F9798A004FA19F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				0DE94F3C23F97986004FA19F /* AppDelegate.swift */,
-				0DE94F3E23F97986004FA19F /* SceneDelegate.swift */,
 				0DE94F4023F97986004FA19F /* ViewController.swift */,
 				0DE94F4223F97986004FA19F /* Main.storyboard */,
 				0DE94F4523F9798A004FA19F /* Assets.xcassets */,
@@ -140,7 +137,6 @@
 			files = (
 				0DE94F4123F97986004FA19F /* ViewController.swift in Sources */,
 				0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */,
-				0DE94F3F23F97986004FA19F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +283,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M3WBMTG67K;
 				INFOPLIST_FILE = "Tinkoff messenger/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +291,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voronoff.Tinkoff-messenger";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M3WBMTG67K;
 				INFOPLIST_FILE = "Tinkoff messenger/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +310,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voronoff.Tinkoff-messenger";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
