@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0094D02402A7BC00242046 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0094CF2402A7BC00242046 /* ProfileViewController.swift */; };
 		0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F3C23F97986004FA19F /* AppDelegate.swift */; };
 		0DE94F4123F97986004FA19F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F4023F97986004FA19F /* ViewController.swift */; };
 		0DE94F4423F97986004FA19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4223F97986004FA19F /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D0094CF2402A7BC00242046 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0DE94F3923F97986004FA19F /* Tinkoff messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE94F3C23F97986004FA19F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DE94F4023F97986004FA19F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				0DE94F3C23F97986004FA19F /* AppDelegate.swift */,
 				0DE94F4023F97986004FA19F /* ViewController.swift */,
+				0D0094CF2402A7BC00242046 /* ProfileViewController.swift */,
 				0DE94F4223F97986004FA19F /* Main.storyboard */,
 				0DE94F4523F9798A004FA19F /* Assets.xcassets */,
 				0DE94F4723F9798A004FA19F /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0094D02402A7BC00242046 /* ProfileViewController.swift in Sources */,
 				0DE94F4123F97986004FA19F /* ViewController.swift in Sources */,
 				0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */,
 			);
