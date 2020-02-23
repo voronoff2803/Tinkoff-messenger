@@ -43,14 +43,14 @@
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtM-jx-5l6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtM-jx-5l6">
                                 <rect key="frame" x="240" y="240" width="65" height="65"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vtM-jx-5l6" secondAttribute="height" multiplier="1:1" id="KSZ-Yx-Cas"/>
                                     <constraint firstAttribute="height" constant="65" id="aQ6-dg-zhD"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="camera"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -69,6 +69,7 @@
                             <constraint firstItem="vtM-jx-5l6" firstAttribute="bottom" secondItem="8dr-bt-wgN" secondAttribute="bottom" constant="15" id="ZRh-Ma-jOL"/>
                             <constraint firstItem="vtM-jx-5l6" firstAttribute="trailing" secondItem="8dr-bt-wgN" secondAttribute="trailing" constant="15" id="dTS-wP-eVI"/>
                             <constraint firstItem="c2P-HX-Knq" firstAttribute="trailing" secondItem="1hR-Yu-kOR" secondAttribute="trailing" id="i0b-46-X0a"/>
+                            <constraint firstItem="jb6-ym-mqV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="c2P-HX-Knq" secondAttribute="bottom" constant="16" id="jxK-aU-T2a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -85,4 +86,7 @@
             <point key="canvasLocation" x="138.40000000000001" y="91.304347826086968"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="30" height="30"/>
+    </resources>
 </document>
