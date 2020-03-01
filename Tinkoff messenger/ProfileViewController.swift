@@ -77,9 +77,15 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     }
     
     func createPhoto(sourceType: UIImagePickerController.SourceType) {
-        imagePicker.delegate = self
-        imagePicker.sourceType = sourceType
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = sourceType
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Выберете другой источник фото", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ОК", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
