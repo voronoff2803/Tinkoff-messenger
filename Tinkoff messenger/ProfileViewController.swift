@@ -83,6 +83,7 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
             present(imagePicker, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Ошибка", message: "Выберете другой источник фото", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ОК", style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
