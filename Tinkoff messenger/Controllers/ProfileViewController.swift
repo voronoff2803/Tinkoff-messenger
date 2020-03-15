@@ -30,10 +30,21 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     let cameraIcon = #imageLiteral(resourceName: "camera")
     let buttonBackgroundColor = #colorLiteral(red: 0.2470588235, green: 0.4705882353, blue: 0.9411764706, alpha: 1)
     
+    var selectedSelectorIndex: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "selectedSelectorIndex")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "selectedSelectorIndex")
+        }
+    }
+    
     var imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        actionSelector.selectedSegmentIndex = selectedSelectorIndex
         
         updateDataManager()
         
@@ -52,6 +63,7 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         } else {
             dataManager = operationDataManager
         }
+        selectedSelectorIndex = actionSelector.selectedSegmentIndex
     }
     
     override func viewDidAppear(_ animated: Bool) {
