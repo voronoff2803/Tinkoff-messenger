@@ -8,13 +8,22 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+final class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changeImageButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var actionSelector: UISegmentedControl!
+    
+    var isEdit = false
+    var oldDescription = ""
+    let gcdDataManager = GCDDataManager()
+    let operationDataManager = OperationDataManager()
+    var dataManager: DataSavable?
+    let titleField = UITextField()
     
     let cornerRadiusConstant: CGFloat = 16.0
     let profilePlaceHolder = #imageLiteral(resourceName: "placeholder-user")
@@ -25,10 +34,24 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateDataManager()
+        
+        loadData()
 
         setup()
         
+        actionSelector.addTarget(self, action: #selector(updateDataManager), for: .valueChanged)
+        
         print(#function ,editButton.frame)
+    }
+    
+    @objc func updateDataManager() {
+        if actionSelector.selectedSegmentIndex == 0 {
+            dataManager = gcdDataManager
+        } else {
+            dataManager = operationDataManager
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +62,40 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         // Frame отличается из-за того что во viewDidLoad - интерфейс не расчитан autolayout'ом, а в viewDidAppear интерфейс уже расчитан autolayout'ом
     }
     
+    func loadData() {
+        dataManager?.loadData { (name, description, image) in
+            DispatchQueue.main.async {
+                self.titleLabel.text = name ?? "Имя Фамилия"
+                self.descriptionTextView.text = description ?? "Моя биография"
+                self.profileImageView.image = image ?? UIImage(named: "placeholder-user")
+            }
+        }
+    }
+    
+    func saveData() {
+        editButton.loadingIndicator(show: true)
+        
+        var newName: String?
+        var newDescription: String?
+        var newImage: UIImage?
+        
+        if titleField.text != titleLabel.text { newName = titleField.text }
+        if descriptionTextView.text != oldDescription { newDescription = descriptionTextView.text }
+        newImage = profileImageView.image
+        
+        dataManager?.saveData(name: newName, description: newDescription, image: newImage) { (error) in
+            DispatchQueue.main.async {
+                self.editButton.loadingIndicator(show: false)
+                if let error = error { self.alert(title: "Error", message: error); self.startEditMode()}
+            }
+        }
+    }
+    
     func setup() {
+        hideKeyboardWhenTappedAround()
+        
+        actionSelector.isHidden = true
+        
         profileImageView.image = profilePlaceHolder
         profileImageView.layer.cornerRadius = cornerRadiusConstant
         profileImageView.contentMode = .scaleAspectFill
@@ -53,6 +109,59 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         editButton.layer.cornerRadius = cornerRadiusConstant
         editButton.layer.borderWidth = 1.0
         editButton.layer.borderColor = editButton.titleColor(for: .normal)?.cgColor
+        editButton.addTarget(self, action: #selector(mainAction), for: .touchUpInside)
+        
+        descriptionTextView.isEditable = false
+    }
+    
+    @objc func mainAction() {
+        if isEdit {
+            endEditMode()
+        } else {
+            startEditMode()
+        }
+    }
+    
+    func startEditMode() {
+        isEdit = true
+        actionSelector.isHidden = false
+        
+        oldDescription = descriptionTextView.text
+        
+        titleField.frame = titleLabel.bounds
+        titleField.text = titleLabel.text
+        titleField.font = titleLabel.font
+        titleField.textColor = titleLabel.textColor
+        titleField.isUserInteractionEnabled = true
+        titleLabel.isUserInteractionEnabled = true
+        titleLabel.textColor = .clear
+        titleLabel.addSubview(titleField)
+        titleField.delegate = self
+        
+        descriptionTextView.isEditable = true
+        
+        editButton.setTitle("Сохранить", for: .normal)
+        
+        titleField.becomeFirstResponder()
+    }
+    
+    func endEditMode() {
+        saveData()
+        
+        isEdit = false
+        actionSelector.isHidden = true
+        
+        titleLabel.text = titleField.text
+        titleLabel.textColor = titleField.textColor
+        titleField.removeFromSuperview()
+        
+        descriptionTextView.isEditable = false
+        
+        editButton.setTitle("Редактировать", for: .normal)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        descriptionTextView.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
@@ -105,4 +214,25 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         //будет ошибка т.к view еще не была загружена из storyboard
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+
+     @objc func keyboardWillShow(notification: NSNotification) {
+         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            bottomConstraint.constant = 20 + keyboardSize.height
+         }
+     }
+
+     @objc func keyboardWillHide(notification: NSNotification) {
+        bottomConstraint.constant = 20
+     }
 }
