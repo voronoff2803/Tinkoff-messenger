@@ -77,4 +77,12 @@ func start() {
     ceo.tryToCloseCompany()
 }
 
-start()
+//start()
+
+var url = URL(string: "http://sankt-peterburg2.speedtest.rt.ru:8080/speedtest/upload.php")
+
+url?.deleteLastPathComponent()
+url?.standardized
+url?.relativePath
+url?.query
+url?.host
