@@ -79,11 +79,11 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         var newDescription: String?
         var newImage: UIImage?
         
-        if let name = newName { GlobalConfig.shared.myName = name }
-        
         if titleField.text != titleLabel.text { newName = titleField.text }
         if descriptionTextView.text != oldDescription { newDescription = descriptionTextView.text }
         newImage = profileImageView.image
+        
+        if let name = titleField.text { GlobalConfig.shared.myName = name }
         
         dataManager?.saveData(name: newName, description: newDescription, image: newImage) { (error) in
             DispatchQueue.main.async {

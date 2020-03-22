@@ -31,10 +31,10 @@ class GlobalConfig {
     
     var myName: String {
         get {
-            return UserDefaults.standard.string(forKey: "myID") ?? "No name"
+            return UserDefaults.standard.string(forKey: "myName") ?? "No name"
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "myID")
+            UserDefaults.standard.set(newValue, forKey: "myName")
         }
     }
 }
