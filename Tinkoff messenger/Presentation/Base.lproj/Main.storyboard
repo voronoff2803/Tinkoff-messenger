@@ -353,18 +353,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-FO-HFl">
-                                <rect key="frame" x="79.5" y="434.5" width="161" height="32"/>
-                                <segments>
-                                    <segment title="GCD"/>
-                                    <segment title="Operation"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Syo-jy-gm6" firstAttribute="leading" secondItem="Jcv-jI-eTJ" secondAttribute="leading" id="0bR-qw-hAR"/>
-                            <constraint firstItem="hw0-FO-HFl" firstAttribute="centerY" secondItem="9IW-Lk-VAg" secondAttribute="centerY" constant="-55" id="2WW-Xu-VFh"/>
                             <constraint firstItem="gSo-tI-QCs" firstAttribute="trailing" secondItem="pfh-et-R4U" secondAttribute="trailing" constant="30" id="4ah-YG-jnv"/>
                             <constraint firstItem="pfh-et-R4U" firstAttribute="leading" secondItem="gSo-tI-QCs" secondAttribute="leading" constant="30" id="5Lr-bO-JiU"/>
                             <constraint firstItem="9IW-Lk-VAg" firstAttribute="top" secondItem="Syo-jy-gm6" secondAttribute="bottom" constant="16" id="6Gu-K1-4jz"/>
@@ -377,7 +369,6 @@
                             <constraint firstItem="Jcv-jI-eTJ" firstAttribute="top" secondItem="pfh-et-R4U" secondAttribute="bottom" constant="24" id="W9X-0i-fn9"/>
                             <constraint firstItem="9IW-Lk-VAg" firstAttribute="leading" secondItem="gSo-tI-QCs" secondAttribute="leading" constant="30" id="Xt7-3N-TYk"/>
                             <constraint firstItem="gSo-tI-QCs" firstAttribute="bottom" secondItem="9IW-Lk-VAg" secondAttribute="bottom" constant="20" id="kB1-ci-I17"/>
-                            <constraint firstItem="hw0-FO-HFl" firstAttribute="centerX" secondItem="9IW-Lk-VAg" secondAttribute="centerX" id="pjm-uA-64J"/>
                             <constraint firstItem="gSo-tI-QCs" firstAttribute="trailing" secondItem="9IW-Lk-VAg" secondAttribute="trailing" constant="30" id="v9O-Z0-ciL"/>
                             <constraint firstItem="VgS-Xk-JdK" firstAttribute="trailing" secondItem="pfh-et-R4U" secondAttribute="trailing" constant="15" id="xAv-QX-KlP"/>
                         </constraints>
@@ -385,7 +376,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="1eh-hC-gKU"/>
                     <connections>
-                        <outlet property="actionSelector" destination="hw0-FO-HFl" id="aDx-GA-RFh"/>
                         <outlet property="bottomConstraint" destination="kB1-ci-I17" id="5x5-o3-zYG"/>
                         <outlet property="changeImageButton" destination="VgS-Xk-JdK" id="L5O-sI-gXP"/>
                         <outlet property="descriptionTextView" destination="Syo-jy-gm6" id="RvO-t6-ytn"/>
