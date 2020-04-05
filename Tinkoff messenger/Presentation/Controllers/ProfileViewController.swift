@@ -16,7 +16,6 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var actionSelector: UISegmentedControl!
     
     var isEdit = false
     var oldDescription = ""
@@ -35,23 +34,14 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateDataManager()
+        dataManager = StorageManager()
+        
         
         loadData()
 
         setup()
         
-        actionSelector.addTarget(self, action: #selector(updateDataManager), for: .valueChanged)
-        
         print(#function ,editButton.frame)
-    }
-    
-    @objc func updateDataManager() {
-        if actionSelector.selectedSegmentIndex == 0 {
-            dataManager = gcdDataManager
-        } else {
-            dataManager = operationDataManager
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,11 +69,9 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         var newDescription: String?
         var newImage: UIImage?
         
-        if titleField.text != titleLabel.text { newName = titleField.text }
-        if descriptionTextView.text != oldDescription { newDescription = descriptionTextView.text }
+        newName = titleField.text
+        newDescription = descriptionTextView.text
         newImage = profileImageView.image
-        
-        if let name = titleField.text { GlobalConfig.shared.myName = name }
         
         dataManager?.saveData(name: newName, description: newDescription, image: newImage) { (error) in
             DispatchQueue.main.async {
@@ -95,8 +83,6 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     
     func setup() {
         hideKeyboardWhenTappedAround()
-        
-        actionSelector.isHidden = true
         
         profileImageView.image = profilePlaceHolder
         profileImageView.layer.cornerRadius = cornerRadiusConstant
@@ -126,7 +112,6 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     
     func startEditMode() {
         isEdit = true
-        actionSelector.isHidden = false
         
         oldDescription = descriptionTextView.text
         
@@ -151,7 +136,6 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         saveData()
         
         isEdit = false
-        actionSelector.isHidden = true
         
         titleLabel.text = titleField.text
         titleLabel.textColor = titleField.textColor
@@ -206,6 +190,7 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
             return
         }
         profileImageView.image = selectedImage
+        saveData()
     }
     
     
