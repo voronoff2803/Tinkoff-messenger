@@ -16,9 +16,9 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
     
-    var messages: [Message] = []
+    var messages: [MessageSimple] = []
     
-    var selectedChannel: Channel?
+    var selectedChannel: ChannelSimple?
     
     @IBAction func sendMessageAction() {
         if let identifier = selectedChannel?.id {
@@ -42,7 +42,6 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
         upsidownTableView()
         
         if let identifier = selectedChannel?.id {
-            print(identifier)
             
             firebaseWorker.getMessages(channelIdentifier: identifier) { (messages) in
                 self.messages = messages.sorted(by: { $0.created > $1.created })

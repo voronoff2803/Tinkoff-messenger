@@ -22,7 +22,6 @@ class StorageManager: DataSavable {
         let storeName = "main.sqlite"
         let fileManager = FileManager.default
         guard let docDirURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        print(docDirURL.absoluteString)
         return docDirURL.appendingPathComponent(storeName)
     }()
     
@@ -91,6 +90,64 @@ class StorageManager: DataSavable {
             var image: UIImage?
             if let imageData = profile?.image { image = UIImage(data: imageData)}
             completion(profile?.name, profile?.bio, image)
+        }
+    }
+    
+    func saveChannels(simpleChannels: [ChannelSimple],completion: @escaping (String?) -> ()) {
+        
+        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+        
+        let channels = try? self.mainManagedObjectContext.fetch(fetchRequest)
+        
+        
+        privateManagedObjectContext.perform {
+            for simpleChannel in simpleChannels {
+                if let existChannel = channels?.first(where: {$0.identifier == simpleChannel.identifier}) {
+                    existChannel.id = simpleChannel.id
+                    existChannel.lastActivity = simpleChannel.lastActivity
+                    existChannel.lastMessage = simpleChannel.lastMessage
+                    existChannel.name = simpleChannel.name
+                } else if simpleChannel {
+                    
+                } else {
+                    let channel = Channel(context: self.privateManagedObjectContext)
+                    channel.id = simpleChannel.id
+                    channel.identifier = simpleChannel.identifier
+                    channel.lastActivity = simpleChannel.lastActivity
+                    channel.lastMessage = simpleChannel.lastMessage
+                    channel.name = simpleChannel.name
+                    self.privateManagedObjectContext.insert(channel)
+                }
+            }
+            
+            for channel in channels ?? [] {
+                if let simpleChannel = simpleChannels.first(where: {$0.identifier == channel.identifier}) {
+                    channel.id = simpleChannel.id
+                    channel.lastActivity = simpleChannel.lastActivity
+                    channel.lastMessage = simpleChannel.lastMessage
+                    channel.name = simpleChannel.name
+                } else if 
+            }
+            do {
+                try self.privateManagedObjectContext.save()
+                completion(nil)
+            } catch {
+                print(error.localizedDescription)
+                completion(error.localizedDescription)
+            }
+        }
+    }
+    
+    func loadChannels(completion: @escaping ([ChannelSimple]) -> ()) {
+        mainManagedObjectContext.perform {
+            let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+            let channels = try? self.mainManagedObjectContext.fetch(fetchRequest)
+            var simpleChannels: [ChannelSimple] = []
+            for channel in channels ?? [] {
+                let simpleChannel = ChannelSimple(id: channel.id, name: channel.name, identifier: channel.identifier, lastMessage: channel.lastMessage, lastActivity: channel.lastActivity)
+                simpleChannels.append(simpleChannel)
+            }
+            completion(simpleChannels)
         }
     }
 }

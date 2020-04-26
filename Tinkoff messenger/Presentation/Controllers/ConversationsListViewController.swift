@@ -13,17 +13,19 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
     
-    var channels: [Channel] = []
+    var channels: [ChannelSimple] = []
     
-    var selectedChannel: Channel?
+    let storageManager = StorageManager()
     
-    var onlineConversations: [Channel] {
+    var selectedChannel: ChannelSimple?
+    
+    var onlineConversations: [ChannelSimple] {
         get {
             return channels.filter({$0.isActive()}).sorted(by: {$0.lastActivity! > $1.lastActivity!})
         }
     }
     
-    var offlineConversations: [Channel] {
+    var offlineConversations: [ChannelSimple] {
         get {
             return channels.filter({!$0.isActive()}).sorted { (c1, c2) -> Bool in
                 guard let a1 = c1.lastActivity else { return false }
@@ -64,8 +66,9 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
             self.tableView.reloadData()
         }
         
-        firebaseWorker.getMessages(channelIdentifier: "J3ZVwIGqRlS40iSrb1sS") { (messages) in
-            print(messages)
+        storageManager.loadChannels { (channels) in
+            self.channels = channels
+            self.tableView.reloadData()
         }
     }
     

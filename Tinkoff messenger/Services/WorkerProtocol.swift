@@ -9,8 +9,8 @@
 import Foundation
 
 protocol WorkerProtocol {
-    func getChannels(channelListener: @escaping (_ channels: [Channel])->())
-    func getMessages(channelIdentifier: String, messageListener: @escaping (_ messages: [Message])->())
+    func getChannels(channelListener: @escaping (_ channels: [ChannelSimple])->())
+    func getMessages(channelIdentifier: String, messageListener: @escaping (_ messages: [MessageSimple])->())
     func addChannel(name: String)
     func addMessage(channelIdentifier: String, content: String)
 }
