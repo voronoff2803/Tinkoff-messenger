@@ -14,7 +14,6 @@
 		0D1AD3AC2427D41F00A22C2A /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3AB2427D41F00A22C2A /* FirebaseWorker.swift */; };
 		0D1AD3AE2427DC6300A22C2A /* MessageSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3AD2427DC6300A22C2A /* MessageSimple.swift */; };
 		0D1AD3B22427EB7100A22C2A /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3B12427EB7100A22C2A /* GlobalConfig.swift */; };
-		0D1AD3B42428060500A22C2A /* WorkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3B32428060500A22C2A /* WorkerProtocol.swift */; };
 		0D393D7A243A359D003FE702 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D393D79243A359D003FE702 /* StorageManager.swift */; };
 		0D53D610241ECDD200D394D5 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53D60E241ECDD200D394D5 /* GCDDataManager.swift */; };
 		0D53D611241ECDD200D394D5 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53D60F241ECDD200D394D5 /* OperationDataManager.swift */; };
@@ -40,6 +39,7 @@
 		8A86654B24438BD300C318AA /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654924438BD300C318AA /* Message+CoreDataClass.swift */; };
 		8A86654C24438BD300C318AA /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654A24438BD300C318AA /* Message+CoreDataProperties.swift */; };
 		8ACC56FE2456F5BD00DDCC93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */; };
+		8ACC56FF24575DB100DDCC93 /* WorkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3B32428060500A22C2A /* WorkerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +108,7 @@
 		0D152828240C46C5002EDE36 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0D1AD3B32428060500A22C2A /* WorkerProtocol.swift */,
 				0DB1E679240C386E0004A647 /* ConfigurableView.swift */,
 				0D53D618241ECE9000D394D5 /* DataSavable.swift */,
 			);
@@ -122,7 +123,6 @@
 				0D53D60F241ECDD200D394D5 /* OperationDataManager.swift */,
 				0D1AD3AB2427D41F00A22C2A /* FirebaseWorker.swift */,
 				0D393D79243A359D003FE702 /* StorageManager.swift */,
-				0D1AD3B32428060500A22C2A /* WorkerProtocol.swift */,
 				0D1AD3B12427EB7100A22C2A /* GlobalConfig.swift */,
 				0DB1E67D240C39F70004A647 /* Models */,
 			);
@@ -348,6 +348,7 @@
 				0D393D7A243A359D003FE702 /* StorageManager.swift in Sources */,
 				0D152830240C4D27002EDE36 /* UIView+decoration.swift in Sources */,
 				8A86654C24438BD300C318AA /* Message+CoreDataProperties.swift in Sources */,
+				8ACC56FF24575DB100DDCC93 /* WorkerProtocol.swift in Sources */,
 				0D53D619241ECE9000D394D5 /* DataSavable.swift in Sources */,
 				0D53D611241ECDD200D394D5 /* OperationDataManager.swift in Sources */,
 				0D152826240C440C002EDE36 /* UIColor+blend.swift in Sources */,
@@ -356,7 +357,6 @@
 				0DE7BFF7243A7CF2001B037C /* Profile+CoreDataProperties.swift in Sources */,
 				0D53D610241ECDD200D394D5 /* GCDDataManager.swift in Sources */,
 				0D15282E240C4A8B002EDE36 /* MessageTableViewCell.swift in Sources */,
-				0D1AD3B42428060500A22C2A /* WorkerProtocol.swift in Sources */,
 				8A86654724438BA600C318AA /* Channel+CoreDataProperties.swift in Sources */,
 				8A86654424437B0800C318AA /* ChannelSimple.swift in Sources */,
 				0D53D615241ECDDD00D394D5 /* UIButton+LoadIndicator.swift in Sources */,
