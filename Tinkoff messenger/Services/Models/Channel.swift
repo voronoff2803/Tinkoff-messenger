@@ -1,5 +1,5 @@
 //
-//  Channel+CoreDataProperties.swift
+//  Channel+CoreDataClass.swift
 //  
 //
 //  Created by Alexey on 12.04.2020.
@@ -9,9 +9,8 @@
 import Foundation
 import CoreData
 
-
-extension Channel {
-
+@objc(Channel)
+public class Channel: NSManagedObject {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Channel> {
         return NSFetchRequest<Channel>(entityName: "Channel")
     }
@@ -22,12 +21,7 @@ extension Channel {
     @NSManaged public var lastMessage: String?
     @NSManaged public var lastActivity: Date?
     @NSManaged public var messages: NSSet?
-
-}
-
-// MARK: Generated accessors for messages
-extension Channel {
-
+    
     @objc(addMessagesObject:)
     @NSManaged public func addToMessages(_ value: Message)
 
@@ -39,5 +33,4 @@ extension Channel {
 
     @objc(removeMessages:)
     @NSManaged public func removeFromMessages(_ values: NSSet)
-
 }

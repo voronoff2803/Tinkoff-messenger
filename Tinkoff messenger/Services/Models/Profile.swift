@@ -12,5 +12,11 @@ import CoreData
 
 @objc(Profile)
 public class Profile: NSManagedObject {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Profile> {
+        return NSFetchRequest<Profile>(entityName: "Profile")
+    }
 
+    @NSManaged public var name: String?
+    @NSManaged public var bio: String?
+    @NSManaged public var image: Data?
 }
