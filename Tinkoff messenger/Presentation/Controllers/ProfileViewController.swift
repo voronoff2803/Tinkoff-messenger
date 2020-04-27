@@ -19,8 +19,6 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
     
     var isEdit = false
     var oldDescription = ""
-    let gcdDataManager = GCDDataManager()
-    let operationDataManager = OperationDataManager()
     var dataManager: DataSavable?
     let titleField = UITextField()
     
