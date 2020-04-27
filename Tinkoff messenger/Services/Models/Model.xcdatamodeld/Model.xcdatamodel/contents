@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F53f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Channel" representedClassName="Channel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="String"/>
+        <attribute name="lastActivity" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastMessage" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="senderID" optional="YES" attributeType="String"/>
+        <attribute name="senderName" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Profile" representedClassName="Profile" syncable="YES">
         <attribute name="bio" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -7,5 +22,7 @@
     </entity>
     <elements>
         <element name="Profile" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Channel" positionX="-63" positionY="9" width="128" height="133"/>
+        <element name="Message" positionX="-54" positionY="45" width="128" height="118"/>
     </elements>
 </model>

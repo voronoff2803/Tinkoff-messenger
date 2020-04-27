@@ -13,17 +13,19 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
     
-    var channels: [Channel] = []
+    var channels: [ChannelSimple] = []
     
-    var selectedChannel: Channel?
+    let storageManager = StorageManager()
     
-    var onlineConversations: [Channel] {
+    var selectedChannel: ChannelSimple?
+    
+    var onlineConversations: [ChannelSimple] {
         get {
             return channels.filter({$0.isActive()}).sorted(by: {$0.lastActivity! > $1.lastActivity!})
         }
     }
     
-    var offlineConversations: [Channel] {
+    var offlineConversations: [ChannelSimple] {
         get {
             return channels.filter({!$0.isActive()}).sorted { (c1, c2) -> Bool in
                 guard let a1 = c1.lastActivity else { return false }
@@ -59,13 +61,18 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-        firebaseWorker.getChannels { (channels) in
+        loadData()
+        
+        storageManager.loadChannels { (channels) in
             self.channels = channels
             self.tableView.reloadData()
         }
-        
-        firebaseWorker.getMessages(channelIdentifier: "J3ZVwIGqRlS40iSrb1sS") { (messages) in
-            print(messages)
+    }
+    
+    func loadData() {
+        firebaseWorker.getChannels { (channels) in
+            self.channels = channels
+            self.tableView.reloadData()
         }
     }
     
@@ -108,6 +115,22 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
             selectedChannel = offlineConversations[indexPath.row]
         }
         performSegue(withIdentifier: "conversation", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var selectedChannel: ChannelSimple?
+            if indexPath.section == 0 {
+                selectedChannel = onlineConversations[indexPath.row]
+            } else {
+                selectedChannel = offlineConversations[indexPath.row]
+            }
+            guard let id = selectedChannel?.id else { return }
+            self.channels.removeAll(where: {$0.id == id})
+            self.firebaseWorker.removeChannel(id: id)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.loadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

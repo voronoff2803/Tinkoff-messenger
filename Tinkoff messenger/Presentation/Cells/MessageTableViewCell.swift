@@ -14,7 +14,7 @@ final class MessageTableViewCell: UITableViewCell, ConfigurableView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    func configure(with model: Message) {
+    func configure(with model: MessageSimple) {
         messageTextLabel.text = model.content
         nameLabel.text = model.senderName
         

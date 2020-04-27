@@ -13,13 +13,15 @@ import FirebaseFirestore
 class FirebaseWorker: WorkerProtocol {
     lazy var db = Firestore.firestore()
     
-    func getChannels(channelListener: @escaping (_ channels: [Channel])->()) {
+    let storageManager = StorageManager()
+    
+    func getChannels(channelListener: @escaping (_ channels: [ChannelSimple])->()) {
         let reference = db.collection("channels")
         
         reference.addSnapshotListener {snapshot, error in
             guard let ar = snapshot?.documents else { return }
             
-            var channels: [Channel] = []
+            var channels: [ChannelSimple] = []
             
             for i in ar {
                 let dict = i.data()
@@ -30,22 +32,24 @@ class FirebaseWorker: WorkerProtocol {
                 let lastActivity = (dict["lastActivity"] as? Timestamp)?.dateValue()
                 let id = i.documentID
                 
-                let channel = Channel(id: id, name: name, identifier: identifier, lastMessage: lastMessage, lastActivity: lastActivity)
+                let channel = ChannelSimple(id: id, name: name, identifier: identifier, lastMessage: lastMessage, lastActivity: lastActivity)
                 
                 channels.append(channel)
             }
-            print(channels)
+            
+            self.storageManager.saveChannels(simpleChannels: channels)
+            
             channelListener(channels)
         }
     }
     
-    func getMessages(channelIdentifier: String, messageListener: @escaping (_ messages: [Message])->()) {
+    func getMessages(channelIdentifier: String, messageListener: @escaping (_ messages: [MessageSimple])->()) {
         let reference = db.collection("channels").document(channelIdentifier).collection("messages")
         
         reference.addSnapshotListener {snapshot, error in
             guard let ar = snapshot?.documents else { return }
             
-            var messages: [Message] = []
+            var messages: [MessageSimple] = []
             
             for i in ar {                
                 let dict = i.data()
@@ -56,7 +60,7 @@ class FirebaseWorker: WorkerProtocol {
                 guard let senderName = dict["senderName"] as? String else { continue }
                 let id = i.documentID
                 
-                let message = Message(content: content, created: created, senderID: senderID, senderName: senderName, id: id)
+                let message = MessageSimple(content: content, created: created, senderID: senderID, senderName: senderName, id: id)
                 
                 messages.append(message)
             }
@@ -67,11 +71,9 @@ class FirebaseWorker: WorkerProtocol {
     
     func addChannel(name: String) {
         print("создаю \(name)")
-        let channel = Channel(name: name)
+        let channel = ChannelSimple(name: name)
         
         let reference = db.collection("channels")
-        
-        print(channel.toDict)
         
         reference.addDocument(data: channel.toDict)
     }
@@ -83,9 +85,14 @@ class FirebaseWorker: WorkerProtocol {
         let id = GlobalConfig.shared.myID
         let name = GlobalConfig.shared.myName
         
-        let newMessage = Message(content: content, created: Date(), senderID: id, senderName: name)
+        let newMessage = MessageSimple(content: content, created: Date(), senderID: id, senderName: name)
         
         reference.addDocument(data: newMessage.toDict)
+    }
+    
+    func removeChannel(id: String) {
+        let reference = db.collection("channels")
+        reference.document(id).delete()
     }
 }
 

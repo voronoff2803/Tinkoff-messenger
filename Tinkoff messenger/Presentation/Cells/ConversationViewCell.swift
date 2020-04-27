@@ -19,7 +19,7 @@ final class ConversationViewCell: UITableViewCell, ConfigurableView {
         // Initialization code
     }
     
-    func configure(with model: Channel) {
+    func configure(with model: ChannelSimple) {
         nameLabel.text = model.name
         
         if let messageText = model.lastMessage {

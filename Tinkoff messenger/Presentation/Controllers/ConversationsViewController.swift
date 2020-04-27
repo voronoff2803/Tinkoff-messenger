@@ -16,9 +16,11 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
     
-    var messages: [Message] = []
+    let storageManager = StorageManager()
     
-    var selectedChannel: Channel?
+    var messages: [MessageSimple] = []
+    
+    var selectedChannel: ChannelSimple?
     
     @IBAction func sendMessageAction() {
         if let identifier = selectedChannel?.id {
@@ -42,9 +44,15 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
         upsidownTableView()
         
         if let identifier = selectedChannel?.id {
-            print(identifier)
-            
             firebaseWorker.getMessages(channelIdentifier: identifier) { (messages) in
+                self.messages = messages.sorted(by: { $0.created > $1.created })
+                self.tableView.reloadData()
+                if let channelId = self.selectedChannel?.id {
+                    self.storageManager.saveMessages(simpleMessages: messages, channelId: channelId)
+                }
+            }
+            
+            storageManager.loadMessages(channelId: identifier) { (messages) in
                 self.messages = messages.sorted(by: { $0.created > $1.created })
                 self.tableView.reloadData()
             }
