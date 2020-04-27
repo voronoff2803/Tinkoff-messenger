@@ -12,13 +12,13 @@ import UIKit
 
 class StorageManager: DataSavable {
     
-    lazy var objectModel: NSManagedObjectModel? = {
+    var objectModel: NSManagedObjectModel? = {
         guard let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd") else { return nil }
         guard let model = NSManagedObjectModel(contentsOf: modelURL) else { return nil }
         return model
     }()
     
-    lazy var persistanceStoreURL: URL? = {
+    var persistanceStoreURL: URL? = {
         let storeName = "main.sqlite"
         let fileManager = FileManager.default
         guard let docDirURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
@@ -93,47 +93,38 @@ class StorageManager: DataSavable {
         }
     }
     
-    func saveChannels(simpleChannels: [ChannelSimple],completion: @escaping (String?) -> ()) {
+    func saveChannels(simpleChannels: [ChannelSimple]) {
         
         let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
         
-        let channels = try? self.mainManagedObjectContext.fetch(fetchRequest)
+        let channels = try? self.privateManagedObjectContext.fetch(fetchRequest)
         
         
         privateManagedObjectContext.perform {
-            for simpleChannel in simpleChannels {
-                if let existChannel = channels?.first(where: {$0.identifier == simpleChannel.identifier}) {
-                    existChannel.id = simpleChannel.id
-                    existChannel.lastActivity = simpleChannel.lastActivity
-                    existChannel.lastMessage = simpleChannel.lastMessage
-                    existChannel.name = simpleChannel.name
-                } else if simpleChannel {
-                    
-                } else {
-                    let channel = Channel(context: self.privateManagedObjectContext)
-                    channel.id = simpleChannel.id
-                    channel.identifier = simpleChannel.identifier
-                    channel.lastActivity = simpleChannel.lastActivity
-                    channel.lastMessage = simpleChannel.lastMessage
-                    channel.name = simpleChannel.name
-                    self.privateManagedObjectContext.insert(channel)
+            // Удаляем каналы которых больше нет
+            for channel in channels ?? [] {
+                if !simpleChannels.contains(where: {$0.id == channel.id}) {
+                    self.privateManagedObjectContext.delete(channel)
                 }
             }
             
-            for channel in channels ?? [] {
-                if let simpleChannel = simpleChannels.first(where: {$0.identifier == channel.identifier}) {
-                    channel.id = simpleChannel.id
-                    channel.lastActivity = simpleChannel.lastActivity
-                    channel.lastMessage = simpleChannel.lastMessage
-                    channel.name = simpleChannel.name
-                } else if 
+            // Добавляем новые каналы и Обновляем старые каналы
+            for simpleChannel in simpleChannels {
+                if !(channels?.contains(where: {$0.id == simpleChannel.id}) ??  true) {
+                    self.simpleChannelAddToContext(simpleChannel: simpleChannel)
+                } else {
+                    if let channel = channels?.first(where: {$0.id == simpleChannel.id}) {
+                        channel.identifier = simpleChannel.identifier
+                        channel.lastActivity = simpleChannel.lastActivity
+                        channel.lastMessage = simpleChannel.lastMessage
+                        channel.name = simpleChannel.name
+                    }
+                }
             }
             do {
                 try self.privateManagedObjectContext.save()
-                completion(nil)
             } catch {
                 print(error.localizedDescription)
-                completion(error.localizedDescription)
             }
         }
     }
@@ -144,10 +135,75 @@ class StorageManager: DataSavable {
             let channels = try? self.mainManagedObjectContext.fetch(fetchRequest)
             var simpleChannels: [ChannelSimple] = []
             for channel in channels ?? [] {
-                let simpleChannel = ChannelSimple(id: channel.id, name: channel.name, identifier: channel.identifier, lastMessage: channel.lastMessage, lastActivity: channel.lastActivity)
+                let simpleChannel = self.channelToSimpleChannel(channel: channel)
                 simpleChannels.append(simpleChannel)
             }
             completion(simpleChannels)
         }
+    }
+    
+    func saveMessages(simpleMessages: [MessageSimple], channelId: String) {
+        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+        let channels = try? self.privateManagedObjectContext.fetch(fetchRequest)
+        
+        privateManagedObjectContext.perform {
+            if let channel = channels?.first(where: {$0.id == channelId}) {
+                if let messages = channel.messages as? Set<Message> {
+                    for simpleMessage in simpleMessages {
+                        if !messages.contains(where: {$0.id == simpleMessage.id}) {
+                            channel.addToMessages(self.simpleMessageToMessage(simpleMessage: simpleMessage))
+                        }
+                    }
+                }
+            }
+            do {
+                try self.privateManagedObjectContext.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func loadMessages(channelId: String, completion: @escaping ([MessageSimple]) -> ()) {
+        mainManagedObjectContext.perform {
+            let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+            let channels = try? self.mainManagedObjectContext.fetch(fetchRequest)
+            if let channel = channels?.first(where: {$0.id == channelId}) {
+                if let messages = channel.messages as? Set<Message> {
+                    var simpleMessages: [MessageSimple] = []
+                    messages.forEach({simpleMessages.append(self.messageToSimpleMessage(message: $0))})
+                    completion(simpleMessages)
+                }
+            }
+        }
+    }
+    
+    func simpleChannelAddToContext(simpleChannel: ChannelSimple) {
+        let channel = NSEntityDescription.insertNewObject(forEntityName: "Channel", into: self.privateManagedObjectContext) as! Channel
+        channel.id = simpleChannel.id
+        channel.identifier = simpleChannel.identifier
+        channel.lastActivity = simpleChannel.lastActivity
+        channel.lastMessage = simpleChannel.lastMessage
+        channel.name = simpleChannel.name
+    }
+    
+    func channelToSimpleChannel(channel: Channel) -> ChannelSimple {
+        let simpleChannel = ChannelSimple(id: channel.id, name: channel.name, identifier: channel.identifier, lastMessage: channel.lastMessage, lastActivity: channel.lastActivity)
+        return simpleChannel
+    }
+    
+    func simpleMessageToMessage(simpleMessage: MessageSimple) -> Message {
+        let message = Message(context: self.privateManagedObjectContext)
+        message.id = simpleMessage.id
+        message.content = simpleMessage.content
+        message.created = simpleMessage.created
+        message.senderID = simpleMessage.senderID
+        message.senderName = simpleMessage.senderName
+        return message
+    }
+    
+    func messageToSimpleMessage(message: Message) -> MessageSimple {
+        let simpleMessage = MessageSimple(content: message.content ?? "", created: message.created ?? Date(), senderID: message.senderID ?? "", senderName: message.senderName ?? "", id: message.id)
+        return simpleMessage
     }
 }

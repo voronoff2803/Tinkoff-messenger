@@ -13,4 +13,5 @@ protocol WorkerProtocol {
     func getMessages(channelIdentifier: String, messageListener: @escaping (_ messages: [MessageSimple])->())
     func addChannel(name: String)
     func addMessage(channelIdentifier: String, content: String)
+    func removeChannel(id: String)
 }

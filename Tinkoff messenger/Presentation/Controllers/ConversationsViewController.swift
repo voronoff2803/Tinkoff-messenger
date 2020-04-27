@@ -16,6 +16,8 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
     
+    let storageManager = StorageManager()
+    
     var messages: [MessageSimple] = []
     
     var selectedChannel: ChannelSimple?
@@ -42,8 +44,15 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
         upsidownTableView()
         
         if let identifier = selectedChannel?.id {
-            
             firebaseWorker.getMessages(channelIdentifier: identifier) { (messages) in
+                self.messages = messages.sorted(by: { $0.created > $1.created })
+                self.tableView.reloadData()
+                if let channelId = self.selectedChannel?.id {
+                    self.storageManager.saveMessages(simpleMessages: messages, channelId: channelId)
+                }
+            }
+            
+            storageManager.loadMessages(channelId: identifier) { (messages) in
                 self.messages = messages.sorted(by: { $0.created > $1.created })
                 self.tableView.reloadData()
             }

@@ -61,12 +61,16 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-        firebaseWorker.getChannels { (channels) in
+        loadData()
+        
+        storageManager.loadChannels { (channels) in
             self.channels = channels
             self.tableView.reloadData()
         }
-        
-        storageManager.loadChannels { (channels) in
+    }
+    
+    func loadData() {
+        firebaseWorker.getChannels { (channels) in
             self.channels = channels
             self.tableView.reloadData()
         }
@@ -111,6 +115,22 @@ final class ConversationsListViewController: UIViewController, UITableViewDelega
             selectedChannel = offlineConversations[indexPath.row]
         }
         performSegue(withIdentifier: "conversation", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var selectedChannel: ChannelSimple?
+            if indexPath.section == 0 {
+                selectedChannel = onlineConversations[indexPath.row]
+            } else {
+                selectedChannel = offlineConversations[indexPath.row]
+            }
+            guard let id = selectedChannel?.id else { return }
+            self.channels.removeAll(where: {$0.id == id})
+            self.firebaseWorker.removeChannel(id: id)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.loadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

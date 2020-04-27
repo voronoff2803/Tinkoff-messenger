@@ -25,7 +25,6 @@
 		0DB1E675240C32070004A647 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB1E674240C32070004A647 /* ConversationsListViewController.swift */; };
 		0DB1E67A240C386E0004A647 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB1E679240C386E0004A647 /* ConfigurableView.swift */; };
 		0DCED40E240C3F5700EA1DC5 /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCED40D240C3F5700EA1DC5 /* ConversationViewCell.swift */; };
-		0DE7BFE3243A53A4001B037C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D1AD3A92427CD8400A22C2A /* GoogleService-Info.plist */; };
 		0DE7BFF3243A7CD5001B037C /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 0DE7BFF0243A7C79001B037C /* Model.xcdatamodeld */; };
 		0DE7BFF6243A7CF2001B037C /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7BFF4243A7CF2001B037C /* Profile+CoreDataClass.swift */; };
 		0DE7BFF7243A7CF2001B037C /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7BFF5243A7CF2001B037C /* Profile+CoreDataProperties.swift */; };
@@ -40,6 +39,7 @@
 		8A86654824438BA600C318AA /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654524438BA600C318AA /* Channel+CoreDataClass.swift */; };
 		8A86654B24438BD300C318AA /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654924438BD300C318AA /* Message+CoreDataClass.swift */; };
 		8A86654C24438BD300C318AA /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654A24438BD300C318AA /* Message+CoreDataProperties.swift */; };
+		8ACC56FE2456F5BD00DDCC93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		0D152829240C47D3002EDE36 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		0D15282D240C4A8B002EDE36 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		0D15282F240C4D27002EDE36 /* UIView+decoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+decoration.swift"; sourceTree = "<group>"; };
-		0D1AD3A92427CD8400A22C2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D1AD3AB2427D41F00A22C2A /* FirebaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWorker.swift; sourceTree = "<group>"; };
 		0D1AD3AD2427DC6300A22C2A /* MessageSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSimple.swift; sourceTree = "<group>"; };
 		0D1AD3B12427EB7100A22C2A /* GlobalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		8A86654624438BA600C318AA /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Channel+CoreDataProperties.swift"; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Channel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		8A86654924438BD300C318AA /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataClass.swift"; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Message+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		8A86654A24438BD300C318AA /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Message+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E19DF12F54EFFA2327B34576 /* Pods-Tinkoff messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinkoff messenger.release.xcconfig"; path = "Target Support Files/Pods-Tinkoff messenger/Pods-Tinkoff messenger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +180,7 @@
 		0DE94F3023F97986004FA19F = {
 			isa = PBXGroup;
 			children = (
+				8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */,
 				0DE94F3B23F97986004FA19F /* Tinkoff messenger */,
 				0DE94F3A23F97986004FA19F /* Products */,
 				6EF73F53F327173727BA63B5 /* Pods */,
@@ -198,7 +199,6 @@
 		0DE94F3B23F97986004FA19F /* Tinkoff messenger */ = {
 			isa = PBXGroup;
 			children = (
-				0D1AD3A92427CD8400A22C2A /* GoogleService-Info.plist */,
 				0DE94F3C23F97986004FA19F /* AppDelegate.swift */,
 				0D1AD3B524280F3600A22C2A /* Services */,
 				0D1AD3B624280F5100A22C2A /* Presentation */,
@@ -286,8 +286,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DE7BFF3243A7CD5001B037C /* Model.xcdatamodeld in Resources */,
-				0DE7BFE3243A53A4001B037C /* GoogleService-Info.plist in Resources */,
 				0DE94F4923F9798A004FA19F /* LaunchScreen.storyboard in Resources */,
+				8ACC56FE2456F5BD00DDCC93 /* GoogleService-Info.plist in Resources */,
 				0DE94F4623F9798A004FA19F /* Assets.xcassets in Resources */,
 				0DE94F4423F97986004FA19F /* Main.storyboard in Resources */,
 			);

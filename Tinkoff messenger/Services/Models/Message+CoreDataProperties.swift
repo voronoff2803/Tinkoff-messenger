@@ -20,6 +20,6 @@ extension Message {
     @NSManaged public var created: Date?
     @NSManaged public var senderID: String?
     @NSManaged public var senderName: String?
-    @NSManaged public var id: NSObject?
+    @NSManaged public var id: String?
 
 }

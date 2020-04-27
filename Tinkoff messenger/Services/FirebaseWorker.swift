@@ -37,9 +37,7 @@ class FirebaseWorker: WorkerProtocol {
                 channels.append(channel)
             }
             
-            self.storageManager.saveChannels(simpleChannels: channels) { (error) in
-                print(error)
-            }
+            self.storageManager.saveChannels(simpleChannels: channels)
             
             channelListener(channels)
         }
@@ -90,6 +88,11 @@ class FirebaseWorker: WorkerProtocol {
         let newMessage = MessageSimple(content: content, created: Date(), senderID: id, senderName: name)
         
         reference.addDocument(data: newMessage.toDict)
+    }
+    
+    func removeChannel(id: String) {
+        let reference = db.collection("channels")
+        reference.document(id).delete()
     }
 }
 
