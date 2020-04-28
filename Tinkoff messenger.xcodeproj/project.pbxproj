@@ -27,12 +27,11 @@
 		0DE7BFF3243A7CD5001B037C /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 0DE7BFF0243A7C79001B037C /* Model.xcdatamodeld */; };
 		0DE7BFF6243A7CF2001B037C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7BFF4243A7CF2001B037C /* Profile.swift */; };
 		0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F3C23F97986004FA19F /* AppDelegate.swift */; };
-		0DE94F4123F97986004FA19F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE94F4023F97986004FA19F /* ViewController.swift */; };
 		0DE94F4423F97986004FA19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4223F97986004FA19F /* Main.storyboard */; };
 		0DE94F4623F9798A004FA19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4523F9798A004FA19F /* Assets.xcassets */; };
 		0DE94F4923F9798A004FA19F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DE94F4723F9798A004FA19F /* LaunchScreen.storyboard */; };
 		6D8558758E6F645CA421458F /* Pods_Tinkoff_messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3091B18456DF3F94ECFE7D /* Pods_Tinkoff_messenger.framework */; };
-		8A86654424437B0800C318AA /* ChannelSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654324437B0800C318AA /* ChannelSimple.swift */; };
+		8A3C88302458AB2C00234E09 /* ChannelSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C882F2458AB2C00234E09 /* ChannelSimple.swift */; };
 		8A86654824438BA600C318AA /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654524438BA600C318AA /* Channel.swift */; };
 		8A86654B24438BD300C318AA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654924438BD300C318AA /* Message.swift */; };
 		8ACC56FE2456F5BD00DDCC93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */; };
@@ -63,13 +62,12 @@
 		0DE7BFF4243A7CF2001B037C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		0DE94F3923F97986004FA19F /* Tinkoff messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE94F3C23F97986004FA19F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0DE94F4023F97986004FA19F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0DE94F4323F97986004FA19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0DE94F4523F9798A004FA19F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DE94F4823F9798A004FA19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DE94F4A23F9798A004FA19F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F3091B18456DF3F94ECFE7D /* Pods_Tinkoff_messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinkoff_messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A86654324437B0800C318AA /* ChannelSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelSimple.swift; path = ../../../../../.Trash/ChannelSimple.swift; sourceTree = "<group>"; };
+		8A3C882F2458AB2C00234E09 /* ChannelSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelSimple.swift; sourceTree = "<group>"; };
 		8A86654524438BA600C318AA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Channel.swift"; sourceTree = "<absolute>"; };
 		8A86654924438BD300C318AA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Message.swift"; sourceTree = "<absolute>"; };
 		8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -126,9 +124,9 @@
 		0D1AD3B624280F5100A22C2A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0DE94F4023F97986004FA19F /* ViewController.swift */,
-				0DB1E67E240C3EEA0004A647 /* Cells */,
-				0DB1E676240C369F0004A647 /* Controllers */,
+				8A3C88342458ABF500234E09 /* ConversationScreen */,
+				8A3C88322458ABC500234E09 /* ConverstionsListScreen */,
+				8A3C88312458AB9200234E09 /* ProfileScreen */,
 				0DE94F4223F97986004FA19F /* Main.storyboard */,
 				0DE94F4523F9798A004FA19F /* Assets.xcassets */,
 				0DE94F4723F9798A004FA19F /* LaunchScreen.storyboard */,
@@ -140,8 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				0D53D616241ECDF800D394D5 /* ProfileViewController.swift */,
-				0DB1E674240C32070004A647 /* ConversationsListViewController.swift */,
-				0D152829240C47D3002EDE36 /* ConversationsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -150,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0DE7BFF0243A7C79001B037C /* Model.xcdatamodeld */,
-				8A86654324437B0800C318AA /* ChannelSimple.swift */,
+				8A3C882F2458AB2C00234E09 /* ChannelSimple.swift */,
 				8A86654924438BD300C318AA /* Message.swift */,
 				8A86654524438BA600C318AA /* Channel.swift */,
 				0DE7BFF4243A7CF2001B037C /* Profile.swift */,
@@ -163,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				0DCED40D240C3F5700EA1DC5 /* ConversationViewCell.swift */,
-				0D15282D240C4A8B002EDE36 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -206,6 +201,56 @@
 				E19DF12F54EFFA2327B34576 /* Pods-Tinkoff messenger.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8A3C88312458AB9200234E09 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0DB1E676240C369F0004A647 /* Controllers */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		8A3C88322458ABC500234E09 /* ConverstionsListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0DB1E67E240C3EEA0004A647 /* Cells */,
+				8A3C88332458ABDD00234E09 /* Controllers */,
+			);
+			path = ConverstionsListScreen;
+			sourceTree = "<group>";
+		};
+		8A3C88332458ABDD00234E09 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0DB1E674240C32070004A647 /* ConversationsListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8A3C88342458ABF500234E09 /* ConversationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8A3C88362458AC1A00234E09 /* Cells */,
+				8A3C88352458AC0100234E09 /* Controllers */,
+			);
+			path = ConversationScreen;
+			sourceTree = "<group>";
+		};
+		8A3C88352458AC0100234E09 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D152829240C47D3002EDE36 /* ConversationsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8A3C88362458AC1A00234E09 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0D15282D240C4A8B002EDE36 /* MessageTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C1BDB624859A6F875C23EDC6 /* Frameworks */ = {
@@ -334,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D53D614241ECDDD00D394D5 /* UIViewController+Alert.swift in Sources */,
+				8A3C88302458AB2C00234E09 /* ChannelSimple.swift in Sources */,
 				0DB1E675240C32070004A647 /* ConversationsListViewController.swift in Sources */,
 				0DE7BFF6243A7CF2001B037C /* Profile.swift in Sources */,
 				0D393D7A243A359D003FE702 /* StorageManager.swift in Sources */,
@@ -346,7 +392,6 @@
 				0D53D617241ECDF800D394D5 /* ProfileViewController.swift in Sources */,
 				0D53D610241ECDD200D394D5 /* GCDDataManager.swift in Sources */,
 				0D15282E240C4A8B002EDE36 /* MessageTableViewCell.swift in Sources */,
-				8A86654424437B0800C318AA /* ChannelSimple.swift in Sources */,
 				0D53D615241ECDDD00D394D5 /* UIButton+LoadIndicator.swift in Sources */,
 				0DCED40E240C3F5700EA1DC5 /* ConversationViewCell.swift in Sources */,
 				8A86654824438BA600C318AA /* Channel.swift in Sources */,
@@ -354,7 +399,6 @@
 				0DB1E67A240C386E0004A647 /* ConfigurableView.swift in Sources */,
 				8A86654B24438BD300C318AA /* Message.swift in Sources */,
 				0D15282A240C47D3002EDE36 /* ConversationsViewController.swift in Sources */,
-				0DE94F4123F97986004FA19F /* ViewController.swift in Sources */,
 				0D1AD3B22427EB7100A22C2A /* GlobalConfig.swift in Sources */,
 				0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */,
 			);
