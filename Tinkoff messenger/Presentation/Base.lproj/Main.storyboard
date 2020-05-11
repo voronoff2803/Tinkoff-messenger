@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PcG-no-kMm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PcG-no-kMm">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -308,6 +309,83 @@
             </objects>
             <point key="canvasLocation" x="136.875" y="842.95774647887322"/>
         </scene>
+        <!--Images View Controller-->
+        <scene sceneID="OPe-gS-vG9">
+            <objects>
+                <viewController id="Fab-E7-eVN" customClass="ImagesViewController" customModule="Tinkoff_messenger" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ud6-Dl-Qg8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RMb-Lt-M4w">
+                                <rect key="frame" x="16" y="16" width="288" height="532"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Gw-WG-bKb">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="estimatedItemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Pp9-4H-MIv" customClass="ImageCollectionViewCell" customModule="Tinkoff_messenger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="h0q-86-voV">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nfl-3G-Hym">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="64k-vp-fzR"/>
+                                                        <constraint firstAttribute="width" constant="80" id="Sdz-J8-Hwa"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nfl-3G-Hym" firstAttribute="leading" secondItem="h0q-86-voV" secondAttribute="leading" id="53m-FA-Stw"/>
+                                                <constraint firstItem="nfl-3G-Hym" firstAttribute="top" secondItem="h0q-86-voV" secondAttribute="top" id="BB0-b9-rkN"/>
+                                                <constraint firstAttribute="bottom" secondItem="nfl-3G-Hym" secondAttribute="bottom" id="CRq-PM-in5"/>
+                                                <constraint firstItem="nfl-3G-Hym" firstAttribute="top" secondItem="h0q-86-voV" secondAttribute="top" id="MrY-6h-uMS"/>
+                                                <constraint firstItem="nfl-3G-Hym" firstAttribute="leading" secondItem="h0q-86-voV" secondAttribute="leading" id="P8J-fR-p6E"/>
+                                                <constraint firstAttribute="trailing" secondItem="nfl-3G-Hym" secondAttribute="trailing" id="cC6-ur-Ht3"/>
+                                                <constraint firstAttribute="bottom" secondItem="nfl-3G-Hym" secondAttribute="bottom" id="cF6-SW-TCY"/>
+                                                <constraint firstAttribute="trailing" secondItem="nfl-3G-Hym" secondAttribute="trailing" id="gbg-9C-J2r"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="80" height="80"/>
+                                        <connections>
+                                            <outlet property="mainImage" destination="nfl-3G-Hym" id="JRh-AM-DUt"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RMb-Lt-M4w" firstAttribute="leading" secondItem="q9f-Hh-0U8" secondAttribute="leading" constant="16" id="43R-Wc-aOL"/>
+                            <constraint firstItem="RMb-Lt-M4w" firstAttribute="bottom" secondItem="q9f-Hh-0U8" secondAttribute="bottom" id="FKz-xd-e69"/>
+                            <constraint firstItem="q9f-Hh-0U8" firstAttribute="trailing" secondItem="RMb-Lt-M4w" secondAttribute="trailing" constant="16" id="JIH-4K-XBo"/>
+                            <constraint firstItem="RMb-Lt-M4w" firstAttribute="top" secondItem="q9f-Hh-0U8" secondAttribute="top" constant="16" id="lCS-HN-zl7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q9f-Hh-0U8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b6P-9X-AJG"/>
+                    <connections>
+                        <outlet property="imagesCollection" destination="RMb-Lt-M4w" id="Gf2-Fs-fRX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J0Y-3d-RZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.875" y="88.732394366197184"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="xdG-er-Zrs">
             <objects>
@@ -382,6 +460,7 @@
                         <outlet property="editButton" destination="9IW-Lk-VAg" id="Ct1-7m-ggq"/>
                         <outlet property="profileImageView" destination="pfh-et-R4U" id="7kU-91-qo7"/>
                         <outlet property="titleLabel" destination="Jcv-jI-eTJ" id="eYW-ED-iAQ"/>
+                        <segue destination="Fab-E7-eVN" kind="show" identifier="images" id="kgI-pj-Cir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjU-YR-YbX" sceneMemberID="firstResponder"/>

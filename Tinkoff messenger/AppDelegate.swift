@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         printForTask("not running", "inactive", #function)
         
+        let imagge = ImageWorker()
+        imagge.loadImageList { (urls, error) in
+            
+        }
+        
         return true
     }
     

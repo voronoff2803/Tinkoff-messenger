@@ -36,6 +36,10 @@
 		8A86654B24438BD300C318AA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A86654924438BD300C318AA /* Message.swift */; };
 		8ACC56FE2456F5BD00DDCC93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */; };
 		8ACC56FF24575DB100DDCC93 /* WorkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1AD3B32428060500A22C2A /* WorkerProtocol.swift */; };
+		8AFC7A9A246A0330006F91E7 /* ImageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC7A99246A0330006F91E7 /* ImageWorker.swift */; };
+		8AFC7AA1246A1192006F91E7 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC7AA0246A1192006F91E7 /* ImageCollectionViewCell.swift */; };
+		8AFC7AA3246A1253006F91E7 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC7AA2246A1253006F91E7 /* ImagesViewController.swift */; };
+		8AFC7AA5246A1904006F91E7 /* ImageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC7AA4246A1904006F91E7 /* ImageViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +75,10 @@
 		8A86654524438BA600C318AA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Channel.swift"; sourceTree = "<absolute>"; };
 		8A86654924438BD300C318AA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "/Users/alexey/Desktop/Tinkoff-messenger/Tinkoff messenger/Services/Models/Message.swift"; sourceTree = "<absolute>"; };
 		8ACC56FD2456F5BD00DDCC93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8AFC7A99246A0330006F91E7 /* ImageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWorker.swift; sourceTree = "<group>"; };
+		8AFC7AA0246A1192006F91E7 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		8AFC7AA2246A1253006F91E7 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		8AFC7AA4246A1904006F91E7 /* ImageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E19DF12F54EFFA2327B34576 /* Pods-Tinkoff messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinkoff messenger.release.xcconfig"; path = "Target Support Files/Pods-Tinkoff messenger/Pods-Tinkoff messenger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +124,7 @@
 				0D1AD3AB2427D41F00A22C2A /* FirebaseWorker.swift */,
 				0D393D79243A359D003FE702 /* StorageManager.swift */,
 				0D1AD3B12427EB7100A22C2A /* GlobalConfig.swift */,
+				8AFC7A99246A0330006F91E7 /* ImageWorker.swift */,
 				0DB1E67D240C39F70004A647 /* Models */,
 			);
 			path = Services;
@@ -138,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				0D53D616241ECDF800D394D5 /* ProfileViewController.swift */,
+				8AFC7AA2246A1253006F91E7 /* ImagesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				0DB1E676240C369F0004A647 /* Controllers */,
+				8AFC7A9F246A113A006F91E7 /* Cells */,
+				8AFC7AA6246A1934006F91E7 /* Protocols */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -251,6 +263,22 @@
 				0D15282D240C4A8B002EDE36 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8AFC7A9F246A113A006F91E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8AFC7AA0246A1192006F91E7 /* ImageCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8AFC7AA6246A1934006F91E7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8AFC7AA4246A1904006F91E7 /* ImageViewControllerDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C1BDB624859A6F875C23EDC6 /* Frameworks */ = {
@@ -380,12 +408,14 @@
 			files = (
 				0D53D614241ECDDD00D394D5 /* UIViewController+Alert.swift in Sources */,
 				8A3C88302458AB2C00234E09 /* ChannelSimple.swift in Sources */,
+				8AFC7AA1246A1192006F91E7 /* ImageCollectionViewCell.swift in Sources */,
 				0DB1E675240C32070004A647 /* ConversationsListViewController.swift in Sources */,
 				0DE7BFF6243A7CF2001B037C /* Profile.swift in Sources */,
 				0D393D7A243A359D003FE702 /* StorageManager.swift in Sources */,
 				0D152830240C4D27002EDE36 /* UIView+decoration.swift in Sources */,
 				8ACC56FF24575DB100DDCC93 /* WorkerProtocol.swift in Sources */,
 				0D53D619241ECE9000D394D5 /* DataSavable.swift in Sources */,
+				8AFC7AA3246A1253006F91E7 /* ImagesViewController.swift in Sources */,
 				0D53D611241ECDD200D394D5 /* OperationDataManager.swift in Sources */,
 				0D152826240C440C002EDE36 /* UIColor+blend.swift in Sources */,
 				0D1AD3AE2427DC6300A22C2A /* MessageSimple.swift in Sources */,
@@ -395,11 +425,13 @@
 				0D53D615241ECDDD00D394D5 /* UIButton+LoadIndicator.swift in Sources */,
 				0DCED40E240C3F5700EA1DC5 /* ConversationViewCell.swift in Sources */,
 				8A86654824438BA600C318AA /* Channel.swift in Sources */,
+				8AFC7A9A246A0330006F91E7 /* ImageWorker.swift in Sources */,
 				0D1AD3AC2427D41F00A22C2A /* FirebaseWorker.swift in Sources */,
 				0DB1E67A240C386E0004A647 /* ConfigurableView.swift in Sources */,
 				8A86654B24438BD300C318AA /* Message.swift in Sources */,
 				0D15282A240C47D3002EDE36 /* ConversationsViewController.swift in Sources */,
 				0D1AD3B22427EB7100A22C2A /* GlobalConfig.swift in Sources */,
+				8AFC7AA5246A1904006F91E7 /* ImageViewControllerDelegate.swift in Sources */,
 				0DE94F3D23F97986004FA19F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

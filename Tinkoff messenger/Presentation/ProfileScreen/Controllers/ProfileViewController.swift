@@ -8,8 +8,7 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
-    
+final class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, ImageViewControllerDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changeImageButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -160,10 +159,12 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         let alert = UIAlertController()
         let photoFromMediaAction = UIAlertAction(title: "Установить из галлереи", style: .default, handler: { _ in self.createPhoto(sourceType: .photoLibrary)})
         let photoFromCameraAction = UIAlertAction(title: "Сделать фото", style: .default, handler: { _ in self.createPhoto(sourceType: .camera)})
+        let photoFromNetwork = UIAlertAction(title: "Загрузить фото из сети", style: .default, handler: { _ in self.performSegue(withIdentifier: "images", sender: self)})
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         
         alert.addAction(photoFromMediaAction)
         alert.addAction(photoFromCameraAction)
+        alert.addAction(photoFromNetwork)
         alert.addAction(cancelAction)
         
         self.present(alert, animated: true)
@@ -211,13 +212,24 @@ final class ProfileViewController: UIViewController, UINavigationControllerDeleg
         self.view.endEditing(true)
     }
 
-     @objc func keyboardWillShow(notification: NSNotification) {
-         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             bottomConstraint.constant = 20 + keyboardSize.height
-         }
-     }
+        }
+    }
 
-     @objc func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         bottomConstraint.constant = 20
-     }
+    }
+    
+    func didSelectImage(image: UIImage) {
+        profileImageView.image = image
+        saveData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let imagesVC = segue.destination as? ImagesViewController {
+            imagesVC.delegate = self
+        }
+    }
 }
