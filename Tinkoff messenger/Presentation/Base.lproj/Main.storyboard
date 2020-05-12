@@ -283,6 +283,7 @@
                     <navigationItem key="navigationItem" id="mtb-g0-Kfr"/>
                     <connections>
                         <outlet property="keyboardConstraint" destination="z97-oe-uyR" id="Owf-fn-zzy"/>
+                        <outlet property="sendButton" destination="J6c-tg-5cW" id="t0d-M1-p9A"/>
                         <outlet property="tableView" destination="x0B-Zi-HUg" id="bdQ-0Z-08e"/>
                         <outlet property="textField" destination="2FV-14-aCv" id="u8R-TN-zrc"/>
                     </connections>
@@ -327,6 +328,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" id="VfA-ML-56V">
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="532"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Pp9-4H-MIv" customClass="ImageCollectionViewCell" customModule="Tinkoff_messenger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -379,6 +384,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="b6P-9X-AJG"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="VfA-ML-56V" id="HSC-Vd-NNm"/>
                         <outlet property="imagesCollection" destination="RMb-Lt-M4w" id="Gf2-Fs-fRX"/>
                     </connections>
                 </viewController>

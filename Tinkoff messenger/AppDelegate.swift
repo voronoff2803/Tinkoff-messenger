@@ -24,12 +24,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         printForTask("not running", "inactive", #function)
         
-        let imagge = ImageWorker()
-        imagge.loadImageList { (urls, error) in
-            
+        if #available(iOS 13.0, *) {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction(touch:)))
+            window?.addGestureRecognizer(tapGesture)
         }
         
         return true
+    }
+    
+    @objc func tapAction(touch: UITapGestureRecognizer) {
+        let point = touch.location(in: touch.view?.window)
+        let particle = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        particle.center = point
+        particle.image = UIImage(named: "logo")
+        UIView.animate(withDuration: 0.5, animations: {
+            particle.alpha = 0.0
+            particle.transform = CGAffineTransform(translationX: CGFloat.random(in: -100...100), y: CGFloat.random(in: -100...100))
+        }, completion: {_ in particle.removeFromSuperview()})
+        window?.addSubview(particle)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

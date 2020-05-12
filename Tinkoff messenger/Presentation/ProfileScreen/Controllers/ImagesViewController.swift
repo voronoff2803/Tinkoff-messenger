@@ -10,6 +10,7 @@ import UIKit
 
 class ImagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var imagesCollection: UICollectionView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     let imageWorker = ImageWorker()
     var imageURLs: [URL] = []
@@ -23,11 +24,10 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate, UICollec
         imagesCollection.dataSource = self
 
         imageWorker.loadImageList { (urls, error) in
+            self.activityIndicatorView.isHidden = true
             if error == nil {
                 self.imageURLs = urls
                 self.imagesCollection.reloadData()
-            } else {
-                print(error)
             }
         }
     }
@@ -47,7 +47,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate, UICollec
             delegate?.didSelectImage(image: image)
             self.dismiss(animated: true, completion: nil)
         }
-        print("select")
     }
 
 }
