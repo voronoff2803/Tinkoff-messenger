@@ -7,5 +7,12 @@ target 'Tinkoff messenger' do
   pod 'Firebase/Core' 
   pod 'Firebase/Firestore'
   # Pods for Tinkoff messenger
+end
 
+ target 'Tinkoff messengerTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'Firebase/Core' 
+  pod 'Firebase/Firestore'
+  # Pods for Tinkoff messenger
 end
