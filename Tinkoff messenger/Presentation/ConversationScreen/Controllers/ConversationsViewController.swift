@@ -13,14 +13,50 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var keyboardConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sendButton: UIButton!
     
     let firebaseWorker: WorkerProtocol = FirebaseWorker()
-    
     let storageManager = StorageManager()
-    
     var messages: [MessageSimple] = []
-    
     var selectedChannel: ChannelSimple?
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        if updatedString == "" {
+            setSendButton(active: false)
+        } else {
+            setSendButton(active: true)
+        }
+        return true
+    }
+    
+    var isSendButtonActive = false
+    
+    func setSendButton(active: Bool) {
+        if active && !isSendButtonActive {
+            self.sendButton.isUserInteractionEnabled = true
+            isSendButtonActive = true
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sendButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.sendButton.setTitleColor(.systemBlue, for: .normal)
+            }) { _ in
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.sendButton.transform = .identity
+                })
+            }
+        } else if !active && isSendButtonActive {
+            self.sendButton.isUserInteractionEnabled = false
+            isSendButtonActive = false
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sendButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.sendButton.setTitleColor(.gray, for: .normal)
+            }) { _ in
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.sendButton.transform = .identity
+                })
+            }
+        }
+    }
     
     @IBAction func sendMessageAction() {
         if let identifier = selectedChannel?.id {
@@ -33,6 +69,9 @@ final class ConversationsViewController: UIViewController, UITableViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.sendButton.setTitleColor(.gray, for: .normal)
+        self.sendButton.isUserInteractionEnabled = false
         
         hideKeyboardWhenTappedAround()
         title = selectedChannel?.name
